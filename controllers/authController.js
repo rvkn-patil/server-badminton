@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 // Utility Functions
 const generateToken = (id, role) => {
     return jwt.sign({ id, role }, process.env.JWT_SECRET || 'secret_key', {
-        expiresIn: '1h',
+        expiresIn: '48h',
     });
 };
 
