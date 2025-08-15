@@ -6,10 +6,10 @@ const authController = require('../controllers/authController');
 const venueController = require('../controllers/venueController');
 
 router.post('/', authController.authMiddleware, authController.ownerOrAdminMiddleware, venueController.createVenue);
-router.get('/', venueController.getAllVenues, authController.authMiddleware);
-router.get('/:id', venueController.getVenue, authController.authMiddleware);
+router.get('/', authController.authMiddleware, venueController.getAllVenues);
+router.get('/:id', authController.authMiddleware, venueController.getVenue);
 router.post('/:venueId/add-admin', authController.authMiddleware, authController.ownerOnlyMiddleware, venueController.addAdmin);
 router.post('/:venueId/courts', authController.authMiddleware, authController.ownerOrAdminMiddleware, venueController.createCourt);
-router.get('/:venueId/courts', venueController.getCourtsByVenue, authController.authMiddleware);
+router.get('/:venueId/courts', authController.authMiddleware, venueController.getCourtsByVenue);
 
 module.exports = router;
